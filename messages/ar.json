@@ -1,5 +1,23 @@
 {
   "HomePage": {
     "title": "مرحبا"
+  },
+  "layout": { 
+      "navLinks": {
+        "home": "",
+        "news": "مستجدات",
+        "cinema_world": "سينما عالمية",
+        "cinema_arabe": "سينما عربية",
+        "cinema_morrocan": "سينما مغربية",
+        "interviews": "حوار سينمائي",
+        "events": "مهرجانات",
+        "critic": "نقد",
+        "calendar": "مواعيد"
+
+      }
+  },
+  "Manifest": {
+    "name": "مويجات | سينما و ثقافة"
   }
+  
 }
