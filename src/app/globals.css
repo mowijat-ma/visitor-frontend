@@ -10,7 +10,9 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    /* --primary: 0 0% 9%; */
+    --primary: 208, 66%, 54%;
+
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -64,5 +66,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    @apply font-ui leading-relaxed;
+  }
+  article, .literary-text {
+    @apply font-classic leading-loose text-lg;
   }
 }

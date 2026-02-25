@@ -1,5 +1,5 @@
+import Header from "@/components/layout/Header";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
 
     const t = useTranslations("layout.navLinks")
   
-  const Links = [
+const Links = [
     {
       id: 1, 
       title: t("home"),
@@ -49,14 +49,10 @@ export default function RootLayout({
   ]
 return (<>
     <div className="">
-        <header className="p-4 flex gap-4">
-          {Links.map((it: any, i :any)=> (
-            <Link href={it.href} key={i}>
-              {it.title}
-            </Link>
-          ))}
-        </header>
-        {children}
+       <Header links={Links}/>
+        <main className="max-w-5xl mx-auto">
+          {children}
+        </main>
     </div>
     </>)
 }

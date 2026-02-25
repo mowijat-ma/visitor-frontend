@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { useLocale } from "next-intl";
+import { Amiri, IBM_Plex_Sans_Arabic } from 'next/font/google';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,6 +21,18 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const amiri = Amiri({
+  subsets: ['arabic'],
+  weight: ['400', '700'],
+  style: ['italic', 'normal'],
+  variable: '--font-amiri', // This creates a CSS variable
+});
+const ibmArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['300', '400', '700'],
+  variable: '--font-ibm',
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +43,7 @@ export default function RootLayout({
   const direction  = locale === "ar" ? 'rtl' : 'rtl'
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body className={`${geistSans.className} ${amiri.variable} ${ibmArabic.variable} font-classic antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -38,6 +51,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          
         </ThemeProvider>
       </body>
     </html>
