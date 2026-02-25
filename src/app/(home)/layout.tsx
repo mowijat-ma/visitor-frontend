@@ -1,6 +1,7 @@
+import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/Header";
 import { useTranslations } from "next-intl";
-
+import './style.css'
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,11 +49,12 @@ const Links = [
     },
   ]
 return (<>
-    <div className="">
-       <Header links={Links}/>
-        <main className="max-w-5xl mx-auto">
+    <div className="flex flex-col h-screen">
+       <Header links={Links} />
+        <main className="max-w-5xl mx-auto w-full grow bg-muted">
           {children}
         </main>
+        <Footer links={Links}/>
     </div>
     </>)
 }
