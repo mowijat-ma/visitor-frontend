@@ -29,9 +29,9 @@ export function Footer1() {
         {/* Top Section */}
         <div className="flex w-full flex-col items-center gap-12 text-center">
           {/* Logo Section */}
-          <Link href="/" aria-label="Go to homepage">
-            <Logo className="size-7" />
-          </Link>
+          <Logo url="/" className="size-7">
+            <span className="text-lg font-semibold">موجات</span>
+          </Logo>
 
           {/* Main Navigation */}
           <nav
