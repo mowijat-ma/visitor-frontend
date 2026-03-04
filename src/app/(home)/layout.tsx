@@ -4,6 +4,8 @@ import { useTranslations } from "next-intl";
 import './style.css'
 import InstallButton from "@/components/PWAButton";
 import HeaderMobile from "@/components/layout/Header/Mobile";
+import Link from "next/link";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -93,9 +95,27 @@ export default function RootLayout({
   ]
   return (<>
     <div className="flex flex-col h-screen">
-      <Header links={menu} />
-      <HeaderMobile />
-      <main className="lg:max-w-5xl max-w-3xl mx-auto w-full grow bg-muted- mt-20 sm:pt-0">
+      {/* Logo Header */}
+      <div className="border-b bg-background">
+        <div className="lg:max-w-5xl max-w-3xl mx-auto w-full flex items-center justify-between px-4 sm:px-0 py-3">
+          <Link href="/" className="flex items-center gap-2">
+            <img 
+              src="/logos/logo_light.png" 
+              className="h-10 dark:invert" 
+              alt="Mowijat Logo" 
+            />
+            <span className="hidden sm:block text-lg font-semibold">موجات</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Sticky Navigation */}
+      <div className="sticky top-0 z-40 bg-background border-b">
+        <Header links={menu} />
+        <HeaderMobile />
+      </div>
+
+      <main className="lg:max-w-5xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
         {children}
       </main>
       <Footer links={Links} />

@@ -103,11 +103,11 @@ const Navbar1 = ({
   const otherLinks = [
     {
       title: t('layout.otherLinks.about_'),
-      href: "",
+      href: "/about-us",
     },
     {
       title: t('layout.otherLinks.contact_us'),
-      href: "",
+      href: "/contact-us",
     },
     {
       title: t('layout.otherLinks.publish_in'),
@@ -115,11 +115,11 @@ const Navbar1 = ({
     },
     {
       title: t('layout.otherLinks.terms'),
-      href: "",
+      href: "/terms",
     },
     {
       title: t('layout.otherLinks.team'),
-      href: "",
+      href: "/team",
     }
   ]
   return (
