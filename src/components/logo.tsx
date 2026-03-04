@@ -87,7 +87,7 @@ const Logo = ({ url, className, children, ...props }: LogoProps) => {
   return (
     <a
       href={url}
-      className={cn("flex max-h-8 items-center gap-2", className)}
+      className={cn("flex gap-2", className)}
       {...props}
     >
       {children}
@@ -96,7 +96,7 @@ const Logo = ({ url, className, children, ...props }: LogoProps) => {
 };
 
 const LogoImage = ({ src, alt, className, ...props }: LogoImageProps) => (
-  <img src={src} alt={alt} className={cn("block h-8", className)} {...props} />
+  <img src={src} alt={alt} className={cn("", className)} {...props} />
 );
 
 const LogoImageMobile = ({ src, alt, className, ...props }: LogoImageProps) => (

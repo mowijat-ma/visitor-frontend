@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import { useLocale } from "next-intl";
+import { NextIntlClientProvider, useLocale } from "next-intl";
 import { Amiri, IBM_Plex_Sans_Arabic } from 'next/font/google';
+import { DirectionProvider } from "@/components/ui/direction"
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -50,8 +51,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NextIntlClientProvider >
+          <DirectionProvider dir={direction}>
           {children}
-          
+              {/* Your app content */}
+          </DirectionProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

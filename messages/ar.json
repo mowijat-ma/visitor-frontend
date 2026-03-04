@@ -1,11 +1,26 @@
 {
   "HomePage": {
-    "title": "مرحبا"
+    "title": "مرحبا",
+    "intevriewsTitle": "حوارات سينمائية"
+  },
+  "ui": {
+    "search" : "بحت",
+    "more_readable": "اكثر قراءة"
   },
   "layout": { 
+      "otherLinks": {
+        "about_": "عن مويجات",
+        "contact_us": "اتصل بنا",
+        "publish_in": "للنشر في مويجات",
+        "terms": "شروط الاستخدام",
+        "team": "فريق العمل"
+
+
+      },
       "navLinks": {
         "home": "الرئيسية",
         "news": "مستجدات",
+        "cinema": "سينما",
         "cinema_world": "سينما عالمية",
         "cinema_arabe": "سينما عربية",
         "cinema_morrocan": "سينما مغربية",
@@ -13,7 +28,12 @@
         "events": "مهرجانات",
         "critic": "نقد",
         "calendar": "مواعيد"
-
+      },
+      "footer": {
+        "quickLinks": "روابط",
+        "mowijat": "مويجات",
+        "copyright": "",
+        "tagline": " نبضُ السينما.. وإكسيرُ الثقافة. نغوصُ في أعماق الفن السابع لنستخلص جوهر الفكر.\n قراءات نقدية | مراجعات | حوارات ثقافية."
       }
   },
   "Manifest": {

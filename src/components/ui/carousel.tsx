@@ -195,7 +195,8 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      {/* <ArrowLeft /> */}
+      <ArrowRight />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -225,12 +226,70 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <ArrowLeft />
+      {/* <ArrowRight /> */}
       <span className="sr-only">Next slide</span>
     </Button>
   )
 }
 
+function CustomCarouselPrevious({
+  className,
+  variant = "iconOutline",
+  size = "icon",
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+
+  return (
+    <Button
+      data-slot="carousel-previous"
+      variant={variant}
+      size={size}
+      className={cn(
+        "size-8 border-none",
+        canScrollPrev ? "text-primary": "",
+        className
+      )}
+      disabled={!canScrollPrev}
+      onClick={scrollPrev}
+      {...props}
+    >
+      {/* <ArrowLeft /> */}
+      <ArrowRight />
+      <span className="sr-only">Previous slide</span>
+    </Button>
+  )
+}
+
+function CustomCarouselNext({
+  className,
+  variant = "iconOutline",
+  size = "icon",
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  const { orientation, scrollNext, canScrollNext } = useCarousel()
+
+  return (
+    <Button
+      data-slot="carousel-next"
+      variant={variant}
+      size={size}
+      className={cn(
+        " size-8 border-none",
+        canScrollNext ? "text-primary": "",
+        className
+      )}
+      disabled={!canScrollNext}
+      onClick={scrollNext}
+      {...props}
+    >
+      <ArrowLeft />
+      {/* <ArrowRight /> */}
+      <span className="sr-only">Next slide</span>
+    </Button>
+  )
+}
 export {
   type CarouselApi,
   Carousel,
@@ -238,4 +297,6 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CustomCarouselNext,
+  CustomCarouselPrevious
 }

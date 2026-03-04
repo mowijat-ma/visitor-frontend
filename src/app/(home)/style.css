@@ -53,3 +53,9 @@
     @apply leading-relaxed font-sans;
   }
 }
+
+@media (display-mode: standalone) {
+  .install-button {
+    display: none;
+  }
+}
