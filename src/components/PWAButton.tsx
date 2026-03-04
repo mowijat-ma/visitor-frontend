@@ -33,21 +33,19 @@ export default function InstallButton() {
   const handleInstallClick = async () => {
     if (!deferredPrompt) return;
 
-    // Show the install prompt
-    deferredPrompt.prompt();
+    try {
+      // Show the install prompt
+      deferredPrompt.prompt();
 
-    // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
+      // Wait for the user to respond to the prompt
+      await deferredPrompt.userChoice;
+
+      // We've used the prompt, and can't use it again
+      setDeferredPrompt(null);
+      setIsInstallable(false);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Installation failed");
     }
-
-    // We've used the prompt, and can't use it again
-    setDeferredPrompt(null);
-    setIsInstallable(false);
   };
 
   // if (!isInstallable) return null;

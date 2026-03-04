@@ -1,10 +1,9 @@
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/Header";
-import { useTranslations } from "next-intl";
+import Footer from "@/components/layout/footer"
+import Header from "@/components/layout/Header"
+import HeaderMobile from "@/components/layout/Header/Mobile"
+import { useTranslations } from "next-intl"
 import './style.css'
-import InstallButton from "@/components/PWAButton";
-import HeaderMobile from "@/components/layout/Header/Mobile";
-import Link from "next/link";
+import Link from "next/link"
 
 export default function RootLayout({
   children,

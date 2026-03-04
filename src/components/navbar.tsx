@@ -43,12 +43,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaSquareInstagram, FaThreads } from "react-icons/fa6";
 import { TiSocialFacebookCircular } from "react-icons/ti";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation"
 
 interface MenuItem {
   title: string;
@@ -134,9 +129,7 @@ const Navbar1 = ({
               className="max-h-8 dark:invert"
               alt={logo.alt}
             />
-            {/* <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span> */}
+
           </a>
           <form action="">
             <InputGroup className="bg-muted rounded-full px-2">
@@ -175,9 +168,7 @@ const Navbar1 = ({
                 className="max-h-8 max-w-8 dark:invert"
                 alt={logo.alt}
               />
-              {/* <span className="text-lg font-semibold tracking-tighter">
-                {logo.title}
-              </span> */}
+
             </a>
             <div className="flex items-center">
               <NavigationMenu>
@@ -188,17 +179,6 @@ const Navbar1 = ({
             </div>
           </div>
           <div className="hidden lg:flex gap-2 justify-end items-center">
-            {/* <form action="">
-              <InputGroup className="bg-muted rounded-full px-2" onClick={() => setOpenSearch(true)}>
-                {openSearch &&
-                  <InputGroupInput placeholder={t("ui.search")} className="m-0 p-0 w-full" />
-                }
-                <InputGroupAddon>
-                  <MagnifyingGlassIcon />
-                </InputGroupAddon>
-              </InputGroup>
-            </form> */}
-            
             <div className="hidden lg:flex gap-2">
               <IconContext.Provider value={{ size: '20', className: "text-muted-forground" }}>
 
@@ -241,15 +221,8 @@ const Navbar1 = ({
               </SheetTrigger>
               <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                  <SheetTitle className="">
-                    {/* <a href={logo.url} className="flex items-center gap-2">
-                      <img
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </a> */}
-                  </SheetTitle>
+                <SheetTitle className="" />
+
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
                   <Accordion
@@ -268,12 +241,6 @@ const Navbar1 = ({
                         {item.title}
                       </Link>
                     ))}
-                    {/* <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
-                    </Button> */}
                   </div>
                 </div>
               </SheetContent>
@@ -324,7 +291,7 @@ const renderMenuItem = (item: MenuItem) => {
   );
 };
 
-const renderMobileMenuItem = (item: MenuItem, Close: Function) => {
+const renderMobileMenuItem = (item: MenuItem, onClose: () => void) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
@@ -344,7 +311,7 @@ const renderMobileMenuItem = (item: MenuItem, Close: Function) => {
   }
 
   return (
-    <Link key={item.title} href={item.href} className="text-md font-semibold" onClick={() => Close()}>
+    <Link key={item.title} href={item.href} className="text-md font-semibold" onClick={onClose}>
       {item.title}
     </Link>
   );
@@ -370,16 +337,3 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
 };
 
 export { Navbar1 };
-
-
-export const SearchForm = () => {
-  return (
-    <Collapsible>
-      <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
-      <CollapsibleContent>
-        Yes. Free to use for personal and commercial projects. No attribution
-        required.
-      </CollapsibleContent>
-    </Collapsible>
-  )
-}

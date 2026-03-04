@@ -1,11 +1,29 @@
-import { Gallery6 } from "@/components/gallery6"
 import { getWpPosts } from "../api/posts"
 import { HomeInterviewsSection } from "@/components/sections/HomeInterviewsSection"
 import HomeHeroSection from "@/components/sections/HomeHeroSection"
 
+interface WpPost {
+  id: number
+  title: { rendered: string }
+  excerpt: { rendered: string }
+  date: string
+  context?: string
+  jetpack_featured_media_url?: string
+}
+
+interface Post {
+  id: number
+  title: string
+  description: string
+  date: string
+  category: string
+  image?: string
+}
+
 export default async function HomePage() {
-  const res = await getWpPosts()
-  const interviews = res.map((item: any) => {
+  const res = (await getWpPosts()) as WpPost[]
+
+  const interviews = res.map((item) => {
     return {
       id: item.id,
       title: item.title.rendered,
@@ -89,15 +107,10 @@ export default async function HomePage() {
       image: item.jetpack_featured_media_url
     };
   });
-  return (<>
-    {/* Hero */}
-    <div className="max-w-x5l my-4 px-4 md:px-0 ">
+  return (
+    <div className="max-w-x5l my-4 px-4 md:px-0">
       <HomeHeroSection firstPost={firstPost} topPosts={secondPosts} moreReadables={moreReadables} />
       <HomeInterviewsSection interviews={interviews} />
-      
-
     </div>
-    {/* <Gallery6 /> */}
-
-  </>)
+  )
 }

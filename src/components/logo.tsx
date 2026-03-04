@@ -46,7 +46,9 @@ const LogoBrandDownload = ({
   const handleDownload = async (file: LogoBrandDownloadProps["files"][0]) => {
     try {
       const response = await fetch(file.path);
-      if (!response.ok) throw new Error(`Failed to fetch ${file.name}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${file.name}`)
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -58,7 +60,9 @@ const LogoBrandDownload = ({
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Failed to download file:", error);
+      throw new Error(
+        error instanceof Error ? error.message : "Failed to download file"
+      )
     }
   };
 

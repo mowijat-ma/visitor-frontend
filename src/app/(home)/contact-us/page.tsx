@@ -24,13 +24,17 @@ export default function ContactUsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 2000);
+
+    try {
+      // Here you would typically send the form data to a server
+      setSubmitted(true);
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setSubmitted(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
@@ -67,55 +71,76 @@ export default function ContactUsPage() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" aria-label="نموذج التواصل">
             <div>
-              <label className="block text-sm font-medium mb-2">الاسم</label>
+              <label htmlFor="name" className="block text-sm font-medium mb-2">
+                الاسم
+              </label>
               <Input
+                id="name"
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
                 placeholder="أدخل اسمك"
+                aria-required="true"
+                aria-label="حقل الاسم"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">البريد الإلكتروني</label>
+              <label htmlFor="email" className="block text-sm font-medium mb-2">
+                البريد الإلكتروني
+              </label>
               <Input
+                id="email"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 placeholder="أدخل بريدك الإلكتروني"
+                aria-required="true"
+                aria-label="حقل البريد الإلكتروني"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">الموضوع</label>
+              <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                الموضوع
+              </label>
               <Input
+                id="subject"
                 type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
                 required
                 placeholder="موضوع الرسالة"
+                aria-required="true"
+                aria-label="حقل الموضوع"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">الرسالة</label>
+              <label htmlFor="message" className="block text-sm font-medium mb-2">
+                الرسالة
+              </label>
               <Textarea
+                id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
                 placeholder="اكتب رسالتك هنا"
                 rows={4}
+                aria-required="true"
+                aria-label="حقل الرسالة"
               />
             </div>
             <Button
               type="submit"
               className="w-full"
               disabled={submitted}
+              aria-label={submitted ? "تم الإرسال بنجاح" : "إرسال النموذج"}
             >
               {submitted ? 'تم الإرسال بنجاح!' : 'إرسال'}
             </Button>

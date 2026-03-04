@@ -1,13 +1,21 @@
-import { apiClient } from "@/lib/apiclient";
+import { apiClient } from "@/lib/apiclient"
 
-const getWpPosts =async ()=>{
-    const {res}:any = await apiClient(`posts`, {
-    method: 'GET',
-    // You can add Next.js specific cache options here
-    // next: { revalidate: 3600 } 
-  });
-  // console.log("Fetching products from:", url);
-  console.log(res)
-  return res
+interface Post {
+  id: number
+  title: string
+  content: string
+  [key: string]: unknown
 }
-export {getWpPosts}
+
+export const getWpPosts = async (): Promise<Post[]> => {
+  try {
+    const { res } = await apiClient<Post[]>('posts', {
+      method: 'GET',
+    })
+    return await res
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Failed to fetch posts"
+    )
+  }
+}
