@@ -230,14 +230,14 @@ const Navbar1 = ({
                     collapsible
                     className="flex w-full flex-col gap-4"
                   >
-                    {menu.map((item) => (renderMobileMenuItem(item, onClose)))}
+                    {menu.map((item) => renderMobileMenuItem(item, onClose))}
                   </Accordion>
 
                   <Separator />
 
                   <div className="flex flex-col gap-3">
                     {otherLinks.map((item) => (
-                      <Link href={item.href} className="text-md font-semibold">
+                      <Link key={item.title} href={item.href} className="text-md font-semibold">
                         {item.title}
                       </Link>
                     ))}
