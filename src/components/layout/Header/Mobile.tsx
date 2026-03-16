@@ -4,11 +4,13 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IconContext } from "react-icons";
-import { BiHomeAlt, BiCalendar } from "react-icons/bi";
+import { BiHomeAlt, BiCalendar, BiMessageDetail } from "react-icons/bi";
 import { PiNewspaperBold } from "react-icons/pi";
 import { FaRegRectangleList } from "react-icons/fa6";
 import { cn } from "@/lib/utils"; // Standard shadcn utility
 import { HouseIcon , NewspaperIcon , ArticleIcon , CalendarDotsIcon } from "@phosphor-icons/react";
+import { TfiMicrophone } from "react-icons/tfi";
+
 export default function HeaderMobile() {
   const t = useTranslations('layout.navLinks');
   const pathname = usePathname();
@@ -22,18 +24,24 @@ export default function HeaderMobile() {
     },
     {
       id: 2,
-      title: t("news"),
-      href: "/news",
-      icon: <NewspaperIcon  size={25} />,
-    },
-    {
-      id: 3,
       title: t("cinema"),
       href: "/cinema",
       icon: <ArticleIcon   size={25}/>,
     },
     {
+      id: 3,
+      title: t("interviews_mobile"),
+      href: "/interviews",
+      icon: <TfiMicrophone   size={25} className=""/>,
+    },
+    {
       id: 4,
+      title: t("critic"),
+      href: "/critic",
+      icon: <BiMessageDetail   size={25}/>,
+    },
+    {
+      id: 5,
       title: t("calendar"),
       href: "/calendar",
       icon: <CalendarDotsIcon   size={25}/>,

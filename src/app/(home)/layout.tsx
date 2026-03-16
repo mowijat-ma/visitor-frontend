@@ -4,6 +4,7 @@ import HeaderMobile from "@/components/layout/Header/Mobile"
 import { useTranslations } from "next-intl"
 import './style.css'
 import Link from "next/link"
+import TopHeader from "@/components/layout/Header/TopHeader"
 
 export default function RootLayout({
   children,
@@ -66,21 +67,25 @@ export default function RootLayout({
       href: "/news"
     },
     {
-      title: t("cinema_world"),
-      href: "/cinema/world"
+      title: t("cinema_morrocan"),
+      href: "/cinema/morrocan"
     },
     {
       title: t("cinema_arabe"),
       href: "/cinema/arabe"
     },
     {
-      title: t("cinema_morrocan"),
-      href: "/cinema/morrocan"
+      title: t("cinema_world"),
+      href: "/cinema/world"
+    },
+    {
+      title: t("events"),
+      href: "/events",
     },
     {
       title: t("interviews"),
       href: "/interviews",
-      items: [""]
+
     },
     {
       title: t("critic"),
@@ -90,26 +95,33 @@ export default function RootLayout({
       title: t("calendar"),
       href: "/calendar"
     },
+    {
+      title: t("other"),
+      // href: "/others"
+      items: [
+        {
+          title: t("theater"), 
+          href: "/theater"
+        },
+        {
+          title: t("paint"), 
+          href: "/paint"
+        },
+        {
+          title: t("music"), 
+          href: "/music"
+        },
+      ]
+    },
 
   ]
   return (<>
     <div className="flex flex-col h-screen">
       {/* Logo Header */}
-      <div className="border-b bg-background">
-        <div className="lg:max-w-5xl max-w-3xl mx-auto w-full flex items-center justify-between px-4 sm:px-0 py-3">
-          <Link href="/" className="flex items-center gap-2">
-            <img 
-              src="/logos/logo_light.png" 
-              className="h-10 dark:invert" 
-              alt="Mowijat Logo" 
-            />
-            <span className="hidden sm:block text-lg font-semibold">موجات</span>
-          </Link>
-        </div>
-      </div>
 
       {/* Sticky Navigation */}
       <div className="sticky top-0 z-40 bg-background border-b">
+        <TopHeader />
         <Header links={menu} />
         <HeaderMobile />
       </div>

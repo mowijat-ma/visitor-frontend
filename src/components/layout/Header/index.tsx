@@ -1,9 +1,9 @@
 import { Navbar1 } from "@/components/navbar"
 
 interface HeaderProps {
-  links: Array<{
+  links?: Array<{
     title: string
-    href: string
+    href?: string
     items?: Array<{ title: string; href: string }>
   }>
 }

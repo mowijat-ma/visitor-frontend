@@ -1,6 +1,7 @@
 import { getWpPosts } from "../api/posts"
 import { HomeInterviewsSection } from "@/components/sections/HomeInterviewsSection"
 import HomeHeroSection from "@/components/sections/HomeHeroSection"
+import NewsSection from "@/components/sections/NewsSection"
 
 interface WpPost {
   id: number
@@ -110,6 +111,7 @@ export default async function HomePage() {
   return (
     <div className="max-w-x5l my-4 px-4 md:px-0">
       <HomeHeroSection firstPost={firstPost} topPosts={secondPosts} moreReadables={moreReadables} />
+      <NewsSection />
       <HomeInterviewsSection interviews={interviews} />
     </div>
   )

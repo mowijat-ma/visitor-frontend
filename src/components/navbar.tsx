@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { MagnifyingGlassIcon } from '@phosphor-icons/react';
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Book, Menu, Search, Sunset, Trees, Zap } from "lucide-react";
 
 import {
   Accordion,
@@ -44,10 +44,18 @@ import { FaSquareInstagram, FaThreads } from "react-icons/fa6";
 import { TiSocialFacebookCircular } from "react-icons/ti";
 
 import { usePathname } from "next/navigation"
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { searchWpPosts } from "@/app/api/posts";
 interface MenuItem {
   title: string;
-  href: string;
+  href?: string;
   description?: string;
   icon?: React.ReactNode;
   items?: MenuItem[];
@@ -83,7 +91,7 @@ const Navbar1 = ({
     title: "Shadcnblocks.com",
   },
   menu = [
-    
+
   ],
   className,
 }: Navbar1Props) => {
@@ -118,19 +126,19 @@ const Navbar1 = ({
     }
   ]
   return (
-    <section className={cn("py-4 w-full max-w-5xl mx-auto border-b", className)}>
+    <section className={cn("sm:py-4 w-full max-w-5xl mx-auto", className)}>
       <div className="">
         {/* Middle Menu */}
 
         <nav className="justify-between items-center hidden sm:flex lg:hidden mb-4">
-          <a href={logo.url} className="flex items-center gap-2">
+          {/* <a href={logo.url} className="flex items-center gap-2">
             <img
               src={logo.src}
               className="max-h-8 dark:invert"
               alt={logo.alt}
             />
 
-          </a>
+          </a> */}
           <form action="">
             <InputGroup className="bg-muted rounded-full px-2">
               <InputGroupInput placeholder={t("ui.search")} className=" m-0 p-0 w-full" />
@@ -140,70 +148,49 @@ const Navbar1 = ({
               {/* <InputGroupAddon align="inline-end">12 results</InputGroupAddon> */}
             </InputGroup>
           </form>
-          <div className="flex gap-2">
-            <IconContext.Provider value={{ size: '20', className: "text-muted-forground- text-black/80" }}>
 
-              <Link href={""}>
-                <FaThreads className="text-black/60" />
-              </Link>
-              <Link href={""}>
-                <FaSquareInstagram />
-              </Link>
-              <Link href={""}>
-                <FaFacebook />
-              </Link>
-
-
-            </IconContext.Provider>
-
-          </div>
         </nav>
         {/* Desktop Menu */}
         <nav className="items-center justify-between lg:flex hidden">
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <a href={logo.url} className="items-center gap-2 flex md:hidden lg:flex">
+            {/* <a href={logo.url} className="items-center gap-2 flex md:hidden lg:flex">
               <img
                 src={logo.src}
                 className="max-h-8 max-w-8 dark:invert"
                 alt={logo.alt}
               />
 
-            </a>
+            </a> */}
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList className="flex">
                   {menu.map((item) => renderMenuItem(item))}
                 </NavigationMenuList>
               </NavigationMenu>
+              <div className="flex flex-col gap-4">
+                <Dialog>
+                  <DialogTrigger>
+                     <MagnifyingGlassIcon size={25} />
+                  </DialogTrigger>
+                  <DialogContent className="w-fit">
+                    <DialogTitle /> 
+                    <SearchForm />
+                  </DialogContent>
+                </Dialog>
+
+              </div>
             </div>
           </div>
-          <div className="hidden lg:flex gap-2 justify-end items-center">
-            <div className="hidden lg:flex gap-2">
-              <IconContext.Provider value={{ size: '20', className: "text-muted-forground" }}>
 
-                <FaThreads />
-                <FaSquareInstagram />
-                <FaFacebook />
-
-
-              </IconContext.Provider>
-
-            </div>
-          </div>
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block sm:hidden fixed top-0 py-4 bg-white z-10 border-b">
+        <div className="block sm:hidden fixed- top-0 py-4 bg-white z-10 ">
           <div className="px-4 sm:px-0 flex gap-4 flex-row-reverse items-center justify-between">
             {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
-              <img
-                src={logo.src}
-                className="dark:invert max-h-16"
-                alt={logo.alt}
-              />
-            </a>
+
+
             <form action="">
               <InputGroup className="bg-muted rounded-full px-2">
                 <InputGroupInput placeholder={t("ui.search")} className=" m-0 p-0" />
@@ -221,7 +208,7 @@ const Navbar1 = ({
               </SheetTrigger>
               <SheetContent className="overflow-y-auto ">
                 <SheetHeader>
-                <SheetTitle className="" />
+                  <SheetTitle className="" />
 
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -254,18 +241,21 @@ const Navbar1 = ({
 
 const renderMenuItem = (item: MenuItem) => {
   const pathname = usePathname();
-  const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+  let isActive = false
+  if (item.href) {
+    let isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+  }
 
-  if (item.items && item.items.length>0 ) {
+  if (item.items && item.items.length > 0) {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger className={cn(
-              'lex px-4 py-2 font-semibold hover:bg-background',
-             )}
-              >{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
+          'text-lg px-4 py-2 font-semibold hover:bg-background',
+        )}
+        >{item.title}</NavigationMenuTrigger>
+        <NavigationMenuContent className="bg-popover text-popover-foreground w-fit">
           {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-80">
+            <NavigationMenuLink asChild key={subItem.title} className="w-">
               <SubMenuLink item={subItem} />
             </NavigationMenuLink>
           ))}
@@ -279,11 +269,11 @@ const renderMenuItem = (item: MenuItem) => {
       <NavigationMenuLink
         href={item.href}
         className={cn(
-          "font-semibold group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm transition-colors hover:bg-muted hover:text-accent-foreground",
+          "font-semibold group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-lg transition-colors hover:bg-muted hover:text-accent-foreground",
           isActive ? "text-primary" : "",
 
         )}
-        
+
       >
         {item.title}
       </NavigationMenuLink>
@@ -311,7 +301,7 @@ const renderMobileMenuItem = (item: MenuItem, onClose: () => void) => {
   }
 
   return (
-    <Link key={item.title} href={item.href} className="text-md font-semibold" onClick={onClose}>
+    <Link key={item.title} href={item.href || ''} className="text-md font-semibold" onClick={onClose}>
       {item.title}
     </Link>
   );
@@ -334,6 +324,36 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
       </div>
     </a>
   );
+
 };
 
+const SearchForm = () =>{
+  const [searchResults, setSearchResults] = useState([])
+  const OnUpdateQuery = async (e: any)=>{
+    const res : any = await searchWpPosts(e.target.value)
+    setSearchResults(res)
+  }
+  return (<>
+  <div className="">
+    <div className="">
+      <InputGroup className="max-w-xs p-3">
+      <InputGroupInput placeholder="بحث..." onChange={OnUpdateQuery}/>
+      <InputGroupAddon>
+        <Search />
+      </InputGroupAddon>
+      {/* <InputGroupAddon align="inline-end">12 نتيجة</InputGroupAddon> */}
+    </InputGroup>
+    </div>
+    {/* {JSON.stringify(searchResults[0].title)} */}
+    {searchResults && searchResults.length >0 && searchResults.map((post: any)=>{
+      return (
+        <Link key={post.id} href={`/cinema/${post.id}/content`}>
+          <div className="" dangerouslySetInnerHTML={{ __html: post.title }}></div>
+        </Link>
+       
+      )
+    })}
+  </div>
+  </>)
+}
 export { Navbar1 };

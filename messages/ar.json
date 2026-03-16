@@ -1,7 +1,9 @@
 {
   "HomePage": {
     "title": "مرحبا",
-    "intevriewsTitle": "حوارات سينمائية"
+    "intevriewsTitle": "حوارات سينمائية",
+    "newsTitle": "آخر المستجدات"
+    
   },
   "ui": {
     "search" : "بحت",
@@ -27,7 +29,12 @@
         "interviews": "حوار سينمائي",
         "events": "مهرجانات",
         "critic": "نقد",
-        "calendar": "مواعيد"
+        "calendar": "مواعيد",
+        "other": "ثقافة و فنون اخرى",
+        "theater": "مسرح",
+        "paint": "فن تشكيل",
+        "music": "موسيقى",
+        "interviews_mobile": "حوار"
       },
       "footer": {
         "quickLinks": "روابط",

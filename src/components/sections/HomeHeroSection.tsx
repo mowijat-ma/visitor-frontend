@@ -15,7 +15,7 @@ export default function HomeHeroSection({ firstPost, topPosts, moreReadables }: 
             <BlogPostContainer post={firstPost} />
           </div>
           <div className="col-span-4 hidden md:block">
-            <div className="bg-muted p-4 rounded-xl">
+            <div className="bg-muted p-4 rounded-xl max-w-fit overflow-y-">
               <div className="">
                 <h3 className="text-primary text-xl font-bold">{t('ui.more_readable')}</h3>
               </div>
@@ -64,7 +64,7 @@ export const BlogPostContainer = ({ post }: {
       <div className="flex flex-col gap-4 rounded-xl transition-all duration-200">
         {/* Image Wrapper */}
         <AspectRatio
-          ratio={4 / 3}
+          ratio={5 / 3}
           className="overflow-hidden rounded-xl"
         >
           <img
