@@ -1,8 +1,11 @@
+'use client'
 import { cn } from "@/lib/utils"
 import { Logo, LogoImage } from "@/components/logo"
 import Link from "next/link"
 import { Separator } from "./ui/separator"
-
+import { IconContext } from "react-icons"
+import { FaFacebook } from "react-icons/fa"
+import { FaSquareInstagram, FaThreads } from "react-icons/fa6"
 interface MenuItem {
   title: string;
   links: {
@@ -46,7 +49,7 @@ const Footer2 = ({
       <div className="">
         <footer className="pt-10 max-w-5xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8 text-center sm:text-start">
-            
+
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx} className="col-span-4 flex flex-col">
                 <h3 className="mb-4 font-bold">{section.title}</h3>
@@ -64,15 +67,26 @@ const Footer2 = ({
                 </ul>
               </div>
             ))}
-            <div className="col-span-4 sm:mb-8 lg:mb-0 flex flex-col items-center sm:items-end justify-start">
-              <Logo url="/" className="flex items-center gap-2">
+            <div className="col-span-4 sm:mb-8 lg:mb-0 flex flex-col items-center sm:items-center justify-between px-12 rounded-lg gap-6">
+              <Logo url="/" className="flex items-center gap-2 w-full">
                 <LogoImage
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-16 sm:h-32"
+                  className="w-full"
                 />
               </Logo>
-              {tagline && <p className="mt-4 text-sm font-medium text-muted-foreground text-left">{tagline}</p>}
+              {/* {tagline && <p className="mt-4 text-sm font-medium text-muted-foreground text-left">{tagline}</p>} */}
+              <div className="flex gap-2 justify-end">
+                <IconContext.Provider value={{ size: '25', className: "text-primary" }}>
+
+                  <FaThreads />
+                  <FaSquareInstagram />
+                  <FaFacebook />
+
+
+                </IconContext.Provider>
+              </div>
+
             </div>
           </div>
           <Separator role="presentation" className="my-4 sm:my-10" />

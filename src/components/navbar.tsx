@@ -126,7 +126,7 @@ const Navbar1 = ({
     }
   ]
   return (
-    <section className={cn("sm:py-4 w-full max-w-5xl mx-auto", className)}>
+    <section className={cn("w-full max-w-7xl mx-auto", className)}>
       <div className="">
         {/* Middle Menu */}
 
@@ -162,9 +162,9 @@ const Navbar1 = ({
               />
 
             </a> */}
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <NavigationMenu>
-                <NavigationMenuList className="flex">
+                <NavigationMenuList className="flex gap-4">
                   {menu.map((item) => renderMenuItem(item))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -243,41 +243,44 @@ const renderMenuItem = (item: MenuItem) => {
   const pathname = usePathname();
   let isActive = false
   if (item.href) {
-    let isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+    isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
   }
 
-  if (item.items && item.items.length > 0) {
-    return (
-      <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className={cn(
-          'text-lg px-4 py-2 font-semibold hover:bg-background',
-        )}
-        >{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground w-fit">
-          {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-">
-              <SubMenuLink item={subItem} />
-            </NavigationMenuLink>
-          ))}
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    );
-  }
+  // if (item.items && item.items.length > 0) {
+  //   return (
+  //     <NavigationMenuItem key={item.title}>
+  //       <NavigationMenuTrigger className={cn(
+  //         'text-lg font-semibold hover:bg-transparent',
+  //       )}
+  //       >{item.title}
+  //       </NavigationMenuTrigger>
+  //       <NavigationMenuContent className="bg-popover text-popover-foreground w-fit">
+  //         {item.items.map((subItem) => (
+  //           <NavigationMenuLink asChild key={subItem.title} className="w-">
+  //             <SubMenuLink item={subItem} />
+  //           </NavigationMenuLink>
+  //         ))}
+  //       </NavigationMenuContent>
+  //     </NavigationMenuItem>
+  //   );
+  // }
 
   return (
-    <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
-        href={item.href}
+      <Link
+        // href={item.href}
+        href={item.href || ''}
+        key={item.title}
         className={cn(
-          "font-semibold group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-lg transition-colors hover:bg-muted hover:text-accent-foreground",
-          isActive ? "text-primary" : "",
+          "font-semibold group inline-flex items-center justify-center text-lg transition-colors border-b-[3px] py-4 px-3",
+          isActive ? "text-primary border-b-primary" : "border-transparent",
 
         )}
 
       >
         {item.title}
-      </NavigationMenuLink>
-    </NavigationMenuItem>
+      </Link>
+    // <NavigationMenuItem key={item.title}>
+    // </NavigationMenuItem>
   );
 };
 

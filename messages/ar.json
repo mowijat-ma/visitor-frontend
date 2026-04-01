@@ -5,6 +5,29 @@
     "newsTitle": "آخر المستجدات"
     
   },
+  "sections": {
+    "more_reads": {
+      "title": "اكثر قراءة"
+    },
+    "cinemaworld": {
+      "title": "سينما عالمية"
+    },
+    "cinemaarabe": {
+      "title":"سينما عربية"
+    },
+    "cinemamorrocan": {
+      "title":"سينما مغربية"
+    },
+    "interviews": {
+      "title": "حوارات"
+    }, 
+    "news": {
+      "title": "آخر المستجدات"
+    },
+    "calendar": {
+      "title": "آخر المواعيد"
+    }
+  },
   "ui": {
     "search" : "بحت",
     "more_readable": "اكثر قراءة"

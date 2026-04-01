@@ -73,3 +73,34 @@
     @apply font-classic leading-loose text-lg;
   }
 }
+
+
+/* تخصيص مظهر تقويم shadcn */
+.rdp {
+  --rdp-cell-size: 45px;
+  --rdp-accent-color: #0f172a; /* لون داكن للتركيز */
+  --rdp-background-color: #f1f5f9;
+}
+
+/* استخدام خط UI للأرقام والأيام */
+.rdp-month {
+  @apply font-ui;
+}
+
+/* تمييز اليوم المختار بشكل دائري كلاسيكي */
+.rdp-day_selected {
+  @apply rounded-full bg-slate-900 text-white !important;
+}
+
+/* src/app/(home)/style.css أو globals.css */
+
+:root {
+  /* بدلاً من --spacing(8) استخدم القيمة المباشرة 2rem أو ما يعادلها */
+  --cell-size: 2rem; 
+}
+
+/* ثم استخدم الكلاس ببساطة */
+.cell-size-custom {
+  width: var(--cell-size);
+  height: var(--cell-size);
+}

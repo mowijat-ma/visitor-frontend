@@ -7,12 +7,12 @@ import { FaSquareInstagram, FaThreads } from "react-icons/fa6"
  const TopHeader = ()=>{
     return (
         <>
-         <div className="border-b bg-background">
-        <div className="lg:max-w-5xl max-w-3xl mx-auto w-full flex items-center justify-between px-4 sm:px-0 py-3">
+         <div className="border-b bg-background py-2">
+        <div className="lg:max-w-7xl max-w-3xl mx-auto w-full flex items-center justify-between px-4 sm:px-0 py-3">
           <Link href="/" className="flex items-center gap-2">
             <img 
-              src="/logos/logo_light.png" 
-              className="h-16 dark:invert" 
+              src="/logos/logo_light_1.png" 
+              className="h-12 dark:invert" 
               alt="Mowijat Logo" 
             />
             {/* <span className="hidden sm:block text-lg font-semibold">موجات</span> */}

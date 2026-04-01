@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 import './style.css'
 import Link from "next/link"
 import TopHeader from "@/components/layout/Header/TopHeader"
+import ScrollToTop from "@/components/layout/ScrollToTop"
 
 export default function RootLayout({
   children,
@@ -116,20 +117,21 @@ export default function RootLayout({
 
   ]
   return (<>
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col ">
       {/* Logo Header */}
 
       {/* Sticky Navigation */}
-      <div className="sticky top-0 z-40 bg-background border-b">
         <TopHeader />
+      <div className="sticky top-0 bg-background border-b">
         <Header links={menu} />
         <HeaderMobile />
       </div>
 
-      <main className="lg:max-w-5xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
+      <main className="lg:max-w-7xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
         {children}
       </main>
       <Footer links={Links} />
+      <ScrollToTop />
     </div>
   </>)
 }
