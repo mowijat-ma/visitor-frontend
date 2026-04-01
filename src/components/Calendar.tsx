@@ -20,11 +20,11 @@ export default function Calendar() {
     <div className="calendar-container">
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin, listPlugin]}
-        initialView="listWeek"
+        initialView="dayGridMonth"
         weekends={true}
         events={[
-          { title: 'عرض "Ciné-Concert" بعنوان', date: '2026-02-28', time: "15:00" },
-          { title: '1 مارس: عرض خاص للأطفال لفيلم الأنيميشن Chien pourri, la vie à Paris!.', date: '2026-03-05', time: "14:20" }
+          { title: 'عرض "Ciné-Concert" بعنوان', date: '2026-04-01', time: "15:00" },
+          { title: '1 مارس: عرض خاص للأطفال لفيلم الأنيميشن Chien pourri, la vie à Paris!.', date: '2026-03-31', time: "14:20" }
         ]}
         direction="rtl"
         locale="ar"
