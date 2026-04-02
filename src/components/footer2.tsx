@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils";
-
-import { Logo, LogoImage, LogoText } from "@/components/logo";
-import Link from "next/link";
-import { Separator } from "./ui/separator";
-import { FaChevronLeft } from "react-icons/fa";
-import { GoChevronLeft } from "react-icons/go";
-
+'use client'
+import { cn } from "@/lib/utils"
+import { Logo, LogoImage } from "@/components/logo"
+import Link from "next/link"
+import { Separator } from "./ui/separator"
+import { IconContext } from "react-icons"
+import { FaFacebook } from "react-icons/fa"
+import { FaSquareInstagram, FaThreads } from "react-icons/fa6"
 interface MenuItem {
   title: string;
   links: {
@@ -40,60 +40,16 @@ const Footer2 = ({
   },
   className,
   tagline = "",
-  menuItems = []
-  // = [
-  //   {
-  //     title: "Product",
-  //     links: [
-  //       { text: "Overview", url: "#" },
-  //       { text: "Pricing", url: "#" },
-  //       { text: "Marketplace", url: "#" },
-  //       { text: "Features", url: "#" },
-  //       { text: "Integrations", url: "#" },
-  //       { text: "Pricing", url: "#" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Company",
-  //     links: [
-  //       { text: "About", url: "#" },
-  //       { text: "Team", url: "#" },
-  //       { text: "Blog", url: "#" },
-  //       { text: "Careers", url: "#" },
-  //       { text: "Contact", url: "#" },
-  //       { text: "Privacy", url: "#" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Resources",
-  //     links: [
-  //       { text: "Help", url: "#" },
-  //       { text: "Sales", url: "#" },
-  //       { text: "Advertise", url: "#" },
-  //     ],
-  //   },
-  //   {
-  //     title: "Social",
-  //     links: [
-  //       { text: "Twitter", url: "#" },
-  //       { text: "Instagram", url: "#" },
-  //       { text: "LinkedIn", url: "#" },
-  //     ],
-  //   },
-  // ],
-  ,
+  menuItems = [],
   copyright = "© 2026 جميع الحقوق محفوظة.",
-  bottomLinks = [
-    // { text: "Terms and Conditions", url: "#" },
-    // { text: "Privacy Policy", url: "#" },
-  ],
+  bottomLinks = [],
 }: Footer2Props) => {
   return (
     <section className={cn("mt-40 px-10 md:px-0", className)}>
       <div className="">
         <footer className="pt-10 max-w-5xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8 text-center sm:text-start">
-            
+
             {menuItems.map((section, sectionIdx) => (
               <div key={sectionIdx} className="col-span-4 flex flex-col">
                 <h3 className="mb-4 font-bold">{section.title}</h3>
@@ -101,30 +57,36 @@ const Footer2 = ({
                   {section.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="font-medium group w-full flex justify-between"
+                      className="font-medium group w-full"
                     >
-                      <Link href={link.href} className="bg-muted- w-full group-hover:text-primary group-hover:underline">{link.title}</Link>
-                      {/* <GoChevronLeft /> */}
-
+                      <Link href={link.href} className="group-hover:text-primary group-hover:underline">
+                        {link.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
-            <div className="col-span-4 sm:mb-8 lg:mb-0 flex flex-col items-center sm:items-end justify-start">
-              <div className="flex items-center gap-2">
-                <Logo url="/" className="">
-                  <LogoImage
-                    src={logo.src}
-                    alt={logo.alt}
-                    title={logo.title}
-                    className="h-16 sm:h-32"
+            <div className="col-span-4 sm:mb-8 lg:mb-0 flex flex-col items-center sm:items-center justify-between px-12 rounded-lg gap-6">
+              <Logo url="/" className="flex items-center gap-2 w-full">
+                <LogoImage
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="w-full"
+                />
+              </Logo>
+              {/* {tagline && <p className="mt-4 text-sm font-medium text-muted-foreground text-left">{tagline}</p>} */}
+              <div className="flex gap-2 justify-end">
+                <IconContext.Provider value={{ size: '25', className: "text-primary" }}>
 
-                  />
-                  {/* <LogoText className="text-xl text-primary">{logo.title}</LogoText> */}
-                </Logo>
+                  <FaThreads />
+                  <FaSquareInstagram />
+                  <FaFacebook />
+
+
+                </IconContext.Provider>
               </div>
-              {/* <p className="mt-4 text-sm font-medium text-muted-foreground text-left">{tagline}</p> */}
+
             </div>
           </div>
           <Separator role="presentation" className="my-4 sm:my-10" />

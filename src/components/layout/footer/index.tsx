@@ -1,11 +1,17 @@
-import { Footer1 } from "@/components/footer-1"
 import { Footer2 } from "@/components/footer2"
-import InstallButton from "@/components/PWAButton"
-import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
-import Link from "next/link"
 
-const Footer = ({ links }: any) => {
+interface FooterLink {
+  id?: number
+  title: string
+  href: string
+}
+
+interface FooterProps {
+  links?: FooterLink[]
+}
+
+const Footer = ({ links }: FooterProps) => {
   const t = useTranslations('layout')
   const menuItems = [
     {
@@ -36,11 +42,7 @@ const Footer = ({ links }: any) => {
     {
       title: t("footer.quickLinks"),
       links: [
-        // {
-        //   id: 1,
-        //   title: t("navLinks.home"),
-        //   href: "/"
-        // },
+
         {
           id: 2,
           title: t("navLinks.news"),
@@ -84,13 +86,10 @@ const Footer = ({ links }: any) => {
   if (links)
 
     return (<>
-      <footer className="pb-20
-       sm:pb-0">
+      <footer className="pb-20 sm:pb-0">
         <div className="max-w-5xl mx-auto py-4">
-          {/* <Footer1 /> */}
           <Footer2 menuItems={menuItems} tagline={t('footer.tagline')} />
         </div>
-
       </footer>
     </>)
 }

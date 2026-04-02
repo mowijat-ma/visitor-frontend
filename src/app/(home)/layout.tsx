@@ -1,9 +1,12 @@
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/Header";
-import { useTranslations } from "next-intl";
+import Footer from "@/components/layout/footer"
+import Header from "@/components/layout/Header"
+import HeaderMobile from "@/components/layout/Header/Mobile"
+import { useTranslations } from "next-intl"
 import './style.css'
-import InstallButton from "@/components/PWAButton";
-import HeaderMobile from "@/components/layout/Header/Mobile";
+import Link from "next/link"
+import TopHeader from "@/components/layout/Header/TopHeader"
+import ScrollToTop from "@/components/layout/ScrollToTop"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,21 +68,25 @@ export default function RootLayout({
       href: "/news"
     },
     {
-      title: t("cinema_world"),
-      href: "/cinema/world"
+      title: t("cinema_morrocan"),
+      href: "/cinema/morrocan"
     },
     {
       title: t("cinema_arabe"),
       href: "/cinema/arabe"
     },
     {
-      title: t("cinema_morrocan"),
-      href: "/cinema/morrocan"
+      title: t("cinema_world"),
+      href: "/cinema/world"
+    },
+    {
+      title: t("events"),
+      href: "/events",
     },
     {
       title: t("interviews"),
       href: "/interviews",
-      items: [""]
+
     },
     {
       title: t("critic"),
@@ -89,16 +96,45 @@ export default function RootLayout({
       title: t("calendar"),
       href: "/calendar"
     },
+    {
+      title: t("other"),
+      // href: "/others"
+      items: [
+        {
+          title: t("theater"),
+          href: "/theater"
+        },
+        {
+          title: t("paint"),
+          href: "/paint"
+        },
+        {
+          title: t("music"),
+          href: "/music"
+        },
+      ]
+    },
 
   ]
   return (<>
     <div className="flex flex-col h-screen">
-      <Header links={menu} />
+      {/* Logo Header */}
+
+      <div className="overflow-scroll">
+        <TopHeader />
+        <div className="sticky top-0 bg-background border-b">
+          <Header links={menu} />
+        </div>
+
+        <main className="lg:max-w-7xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
+          {children}
+        </main>
+        <ScrollToTop />
+        <Footer links={Links} />
+
+      </div>
+      {/* Sticky Navigation */}
       <HeaderMobile />
-      <main className="lg:max-w-5xl max-w-3xl mx-auto w-full grow bg-muted- mt-20 sm:pt-0">
-        {children}
-      </main>
-      <Footer links={Links} />
     </div>
   </>)
 }

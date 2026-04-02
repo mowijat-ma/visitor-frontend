@@ -1,7 +1,32 @@
 {
   "HomePage": {
     "title": "مرحبا",
-    "intevriewsTitle": "حوارات سينمائية"
+    "intevriewsTitle": "حوارات سينمائية",
+    "newsTitle": "آخر المستجدات"
+    
+  },
+  "sections": {
+    "more_reads": {
+      "title": "اكثر قراءة"
+    },
+    "cinemaworld": {
+      "title": "سينما عالمية"
+    },
+    "cinemaarabe": {
+      "title":"سينما عربية"
+    },
+    "cinemamorrocan": {
+      "title":"سينما مغربية"
+    },
+    "interviews": {
+      "title": "حوارات"
+    }, 
+    "news": {
+      "title": "آخر المستجدات"
+    },
+    "calendar": {
+      "title": "آخر المواعيد"
+    }
   },
   "ui": {
     "search" : "بحت",
@@ -27,7 +52,12 @@
         "interviews": "حوار سينمائي",
         "events": "مهرجانات",
         "critic": "نقد",
-        "calendar": "مواعيد"
+        "calendar": "مواعيد",
+        "other": "ثقافة و فنون اخرى",
+        "theater": "مسرح",
+        "paint": "فن تشكيل",
+        "music": "موسيقى",
+        "interviews_mobile": "حوار"
       },
       "footer": {
         "quickLinks": "روابط",

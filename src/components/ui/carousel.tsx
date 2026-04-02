@@ -247,8 +247,8 @@ function CustomCarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "size-8 border-none",
-        canScrollPrev ? "text-primary": "",
+        "size-8",
+        canScrollPrev ? "text-primary": "border-transparent",
         className
       )}
       disabled={!canScrollPrev}
@@ -276,8 +276,8 @@ function CustomCarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        " size-8 border-none",
-        canScrollNext ? "text-primary": "",
+        "size-8",
+        canScrollNext ? "text-primary": "border-transparent",
         className
       )}
       disabled={!canScrollNext}
