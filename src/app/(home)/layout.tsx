@@ -101,15 +101,15 @@ export default function RootLayout({
       // href: "/others"
       items: [
         {
-          title: t("theater"), 
+          title: t("theater"),
           href: "/theater"
         },
         {
-          title: t("paint"), 
+          title: t("paint"),
           href: "/paint"
         },
         {
-          title: t("music"), 
+          title: t("music"),
           href: "/music"
         },
       ]
@@ -117,21 +117,24 @@ export default function RootLayout({
 
   ]
   return (<>
-    <div className="flex flex-col ">
+    <div className="flex flex-col h-screen">
       {/* Logo Header */}
 
-      {/* Sticky Navigation */}
+      <div className="overflow-scroll">
         <TopHeader />
-      <div className="sticky top-0 bg-background border-b">
-        <Header links={menu} />
-        <HeaderMobile />
-      </div>
+        <div className="sticky top-0 bg-background border-b">
+          <Header links={menu} />
+        </div>
 
-      <main className="lg:max-w-7xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
-        {children}
-      </main>
-      <Footer links={Links} />
-      <ScrollToTop />
+        <main className="lg:max-w-7xl max-w-3xl mx-auto w-full grow bg-muted- mt-4 sm:pt-0">
+          {children}
+        </main>
+        <ScrollToTop />
+        <Footer links={Links} />
+
+      </div>
+      {/* Sticky Navigation */}
+      <HeaderMobile />
     </div>
   </>)
 }

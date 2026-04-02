@@ -49,7 +49,7 @@ export default function HeaderMobile() {
   ];
   
   return (
-    <div className="sm:hidden bg-white/90 backdrop-blur-md border-t-2 fixed bottom-0 right-0 left-0 z-50 pb-safe">
+    <div className="sm:hidden bg-white/90 backdrop-blur-md border-t-2 fixed- bottom-0 right-0 left-0 z-50 pb-safe">
       <nav className="px-4 py-3-">
         <IconContext.Provider value={{ size: '24' }}>
           <div className="flex justify-around items-center gap-4">
