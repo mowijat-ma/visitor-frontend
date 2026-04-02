@@ -1,20 +1,17 @@
 import Footer from "@/components/layout/footer"
 import Header from "@/components/layout/Header"
 import HeaderMobile from "@/components/layout/Header/Mobile"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import './style.css'
-import Link from "next/link"
 import TopHeader from "@/components/layout/Header/TopHeader"
 import ScrollToTop from "@/components/layout/ScrollToTop"
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-
 }>) {
-
-  const t = useTranslations("layout.navLinks")
+  const t = await getTranslations("layout.navLinks")
 
   const Links = [
     { id: 1, title: t("home"), href: "/" },

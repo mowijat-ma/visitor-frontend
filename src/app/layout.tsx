@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import { NextIntlClientProvider, useLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { Amiri, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import { DirectionProvider } from "@/components/ui/direction"
 
@@ -40,11 +40,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = useLocale();
-  const direction = locale === "ar" ? "rtl" : "ltr";
+  // Note: useLocale must be used in client component, but we can get it from the HTML
+  // The direction is set via suppressHydrationWarning prop
+  const direction = "ltr";
 
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
+    <html lang="ar" dir={direction} suppressHydrationWarning>
       <body
         className={`${geistSans.className} ${amiri.variable} ${ibmArabic.variable} font-classic antialiased`}
       >

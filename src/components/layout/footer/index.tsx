@@ -1,3 +1,5 @@
+"use client";
+
 import { Footer2 } from "@/components/footer2"
 import { useTranslations } from "next-intl"
 
@@ -74,24 +76,21 @@ const Footer = ({ links }: FooterProps) => {
           href: "/critic"
         },
         {
-          id: 7,
+          id: 8,
           title: t("navLinks.calendar"),
           href: "/calendar"
         },
       ]
     },
-    
-
   ]
-  if (links)
-
-    return (<>
-      <footer className="pb-20 sm:pb-0">
-        <div className="max-w-5xl mx-auto py-4">
-          <Footer2 menuItems={menuItems} tagline={t('footer.tagline')} />
-        </div>
-      </footer>
-    </>)
+  
+  return (
+    <footer className="pb-20 sm:pb-0">
+      <div className="max-w-5xl mx-auto py-4">
+        <Footer2 menuItems={menuItems} tagline={t('footer.tagline')} />
+      </div>
+    </footer>
+  )
 }
 
 export default Footer
