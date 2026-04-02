@@ -26,8 +26,9 @@ const amiri = Amiri({
   subsets: ['arabic'],
   weight: ['400', '700'],
   style: ['italic', 'normal'],
-  variable: '--font-amiri', // This creates a CSS variable
+  variable: '--font-amiri',
 });
+
 const ibmArabic = IBM_Plex_Sans_Arabic({
   subsets: ['arabic'],
   weight: ['300', '400', '700'],
@@ -38,24 +39,25 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-
 }>) {
-  const locale = useLocale(); 
-  const direction  = locale === "ar" ? 'rtl' : 'rtl'
+  const locale = useLocale();
+  const direction = locale === "ar" ? "rtl" : "ltr";
+
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className={`${geistSans.className} ${amiri.variable} ${ibmArabic.variable} font-classic antialiased`}>
+      <body
+        className={`${geistSans.className} ${amiri.variable} ${ibmArabic.variable} font-classic antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider >
-          <DirectionProvider dir={direction}>
-          {children}
-              {/* Your app content */}
-          </DirectionProvider>
+          <NextIntlClientProvider>
+            <DirectionProvider dir={direction}>
+              {children}
+            </DirectionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

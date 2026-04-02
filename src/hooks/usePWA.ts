@@ -1,4 +1,4 @@
-"use/client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
@@ -28,24 +28,23 @@ export function usePWA() {
 
     // انتظار رد فعل المستخدم
     const { outcome } = await installPrompt.userChoice;
-    if (outcome === "accepted") {
-      console.log("User accepted the PWA install");
-    }
 
     // تنظيف الحالة بعد المحاولة
-    setInstallPrompt(null);
-    setIsInstallable(false);
+    if (outcome === "accepted") {
+      setInstallPrompt(null);
+      setIsInstallable(false);
+    }
   };
 
   return { isInstallable, handleInstallClick };
 }
 
-export const useDevice = ()=>{
+export const useDevice = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
-    // نتحقق فقط بعد تحميل المكون في المتصفح
     setIsMobileDevice(isMobile);
   }, []);
-  return {isMobileDevice}
+
+  return { isMobileDevice };
 }

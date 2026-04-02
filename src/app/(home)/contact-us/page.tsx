@@ -32,8 +32,8 @@ export default function ContactUsPage() {
         setFormData({ name: '', email: '', subject: '', message: '' });
         setSubmitted(false);
       }, 2000);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch {
+      // Error handling for form submission
     }
   };
 

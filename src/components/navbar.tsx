@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { MagnifyingGlassIcon } from '@phosphor-icons/react';
-import { Book, Menu, Search, Sunset, Trees, Zap } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 
 import {
   Accordion,
@@ -11,9 +11,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,12 +18,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -36,22 +31,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
 import { Separator } from "./ui/separator";
-
-
-import { IconContext } from "react-icons";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { FaSquareInstagram, FaThreads } from "react-icons/fa6";
-import { TiSocialFacebookCircular } from "react-icons/ti";
-
-import { usePathname } from "next/navigation"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+
+import { usePathname } from "next/navigation"
 import { searchWpPosts } from "@/app/api/posts";
 interface MenuItem {
   title: string;
@@ -97,33 +84,17 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
-  const [openSearch, setOpenSearch] = useState(true)
   const onClose = () => {
     setOpen(false)
   }
 
 
   const otherLinks = [
-    {
-      title: t('layout.otherLinks.about_'),
-      href: "/about-us",
-    },
-    {
-      title: t('layout.otherLinks.contact_us'),
-      href: "/contact-us",
-    },
-    {
-      title: t('layout.otherLinks.publish_in'),
-      href: "",
-    },
-    {
-      title: t('layout.otherLinks.terms'),
-      href: "/terms",
-    },
-    {
-      title: t('layout.otherLinks.team'),
-      href: "/team",
-    }
+    { title: t('layout.otherLinks.about_'), href: "/about-us" },
+    { title: t('layout.otherLinks.contact_us'), href: "/contact-us" },
+    { title: t('layout.otherLinks.publish_in'), href: "" },
+    { title: t('layout.otherLinks.terms'), href: "/terms" },
+    { title: t('layout.otherLinks.team'), href: "/team" },
   ]
   return (
     <section className={cn("w-full max-w-7xl mx-auto", className)}>
